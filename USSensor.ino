@@ -20,6 +20,9 @@ void loop()
     delayMicroseconds(10); // Wait for 10 uS
     digitalWrite(TRIGGER_PIN, LOW); // Clear The Sensor
 
-    Serial.println(pulseIn(ECHO_PIN, HIGH) / 58);
+    distance_CM = pulseIn(ECHO_PIN, HIGH) / 58;
+    distance_IN = pulseIn(ECHO_PIN, HIGH) / 148;
+
+    Serial.println(distance_CM);
     delay(1000);
 }
