@@ -35,6 +35,94 @@ void loop()
     //distance_IN = pulseIn(ECHO_PIN, HIGH) / 148; // Calculating distance in Inches
 
     Serial.println(distance_CM); // Printing Distance (Example is in CMs)
-
+    distance_notifier(1);
     delayMicroseconds(65); // Wait for one second before sending the next wave
+}
+
+
+/*
+ * This method chooses distance unit and then compares
+ * the provided distance with predefined safety values
+ * and makes the LEDs blink according to the safety level
+ * by sending the PIN Number and The interval of blinking
+ */
+void distance_notifier(int distance_flag)
+{
+    int distance;
+    switch (distance_flag)
+    {
+    case 1:
+        distance = distance_CM;
+        if (distance < SAFE_DISTANCE_CM)
+        {
+            blink_LEDs(RED_LED, 700);
+            if (distance < CLOSE_DISTANCE_CM)
+            {
+                blink_LEDs(RED_LED, 400);
+                if (distance < DANGER_DISTANCE_CM)
+                {
+                    blink_LEDs(RED_LED, 100);
+                }
+            }
+        }
+        else
+        {
+            blink_LEDs(GREEN_LED, 1000);
+        }
+        break;
+    case 2:
+        distance = distance_IN;
+        if (distance < SAFE_DISTANCE_IN)
+        {
+            blink_LEDs(RED_LED, 700);
+            if (distance < CLOSE_DISTANCE_IN)
+            {
+                blink_LEDs(RED_LED, 400);
+                if (distance < DANGER_DISTANCE_IN)
+                {
+                    blink_LEDs(RED_LED, 100);
+                }
+            }
+        }
+        else
+        {
+            blink_LEDs(GREEN_LED, 1000);
+        }
+        break;
+    }
+}
+
+int LED_STATE = HIGH;             // Initial LED State
+unsigned long previousMillis = 0; // Initial Millis
+
+/*
+ * This method sends signal to provided pin for the LED to turn on
+ * It also waits for the provided amount of time before turning LED off
+ * for the blinking effect
+ */
+void blink_LEDs(int LED_Pin, int interval)
+{
+    int currentMillis = millis();
+    if (currentMillis - previousMillis >= interval)
+    {
+        previousMillis = currentMillis;
+        if (LED_STATE == LOW)
+        {
+            LED_STATE = HIGH;
+        }
+        else
+        {
+            LED_STATE = LOW;
+        }
+        if (LED_Pin == GREEN_LED)
+        {
+            digitalWrite(LED_Pin, LED_STATE);
+            digitalWrite(RED_LED, LOW);
+        }
+        else if (LED_Pin == RED_LED)
+        {
+            digitalWrite(LED_Pin, LED_STATE);
+            digitalWrite(GREEN_LED, LOW);
+        }
+    }
 }
