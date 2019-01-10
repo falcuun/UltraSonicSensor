@@ -31,14 +31,14 @@ void loop()
     delayMicroseconds(10);           // Wait for 10 uS
     digitalWrite(TRIGGER_PIN, LOW);  // Clear The Sensor
 
-    distance_CM = pulseIn(ECHO_PIN, HIGH) / 58; // Calculating distance in CMs
-    //distance_IN = pulseIn(ECHO_PIN, HIGH) / 148; // Calculating distance in Inches
+    int duration = pulseIn(ECHO_PIN, HIGH);
+    distance_CM = duration / 58;  // Calculating distance in CMs
+    distance_IN = duration / 148; // Calculating distance in Inches
 
     Serial.println(distance_CM); // Printing Distance (Example is in CMs)
     distance_notifier(1);
     delayMicroseconds(65); // Wait for one second before sending the next wave
 }
-
 
 /*
  * This method chooses distance unit and then compares
