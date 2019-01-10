@@ -34,10 +34,8 @@ void loop()
     int duration = pulseIn(ECHO_PIN, HIGH);
     distance_CM = duration / 58;  // Calculating distance in CMs
     distance_IN = duration / 148; // Calculating distance in Inches
-
-    Serial.println(distance_CM); // Printing Distance (Example is in CMs)
-    distance_notifier(1);
-    delayMicroseconds(65); // Wait for one second before sending the next wave
+    distance_notifier(1);         // Call distance Notifier Method
+    delayMicroseconds(65);        // Wait for one second before sending the next wave
 }
 
 /*
