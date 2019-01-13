@@ -1,6 +1,6 @@
 # UltraSonicSensor
 ### Wiring:
-    - VIN - 3.3V
-    - GND - GND
-    - SDA - A4
-    - SCL - A5
+    - VCC - 5V pin
+    - GND - GND pin
+    - Trig (Trigger) - Pin 3
+    - Echo (Echo) - Pin 5
