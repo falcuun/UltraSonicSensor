@@ -21,7 +21,6 @@ int distance_IN = 0; // Initial Distance in IN
 
 void setup()
 {
-
     for (int i = 0; i < sizeof(ECHO_PINS) / sizeof(int); i++)
     {
         pinMode(ECHO_PINS[i], INPUT);
@@ -56,6 +55,14 @@ void loop()
         distance_CM = duration / 58;
         distance_IN = duration / 148;
         delayMicroseconds(65);
+
+        switch(ECHO_PINS[i]){
+            case 3: Serial.print("BACK DISTANCE: "); break;
+            case 5: Serial.print("RIGHT DISTANCE: "); break;
+            case 6: Serial.print("FRONT DISTANCE: "); break;
+            case 9: Serial.print("LEFT DISTANCE: "); break;
+        }
+
         Serial.println(distance_CM);
         delay(1000);
     }
