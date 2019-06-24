@@ -1,7 +1,7 @@
 # UltraSonicSensor
 ### Wiring:
-    - VCC - 5V pin (Breadboard connection, usually the + line on far right or far left)
-    - GND - GND pin (Breadboard connection, usually the - line on far right or far left)
+    - VCC - 5V pin (Breadboard connection, usually the + line on far right or far left).
+    - GND - GND pin (Breadboard connection, usually the - line on far right or far left).
     - Trigger Pins:
         - Left:  8
         - Front: 7
