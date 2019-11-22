@@ -14,6 +14,6 @@
         - Rear:  3
         
 ### Prospect:
-    This application will be continued in a different repository setting up for an 'autonomous' vehicle. 
+    This application will be continued in a different repository setting up for an 'autonomous' vehicle.      
    
    
